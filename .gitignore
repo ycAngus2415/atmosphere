@@ -1,6 +1,7 @@
-./data/acgis_word/1
-./data/acgis_word/2
-./data/acgis_word/3
-./data/acgis_word/4
-./data/acgis_word/5
-./node_modules
+!./data/acgis_word/1
+!./data/acgis_word/2
+!./data/acgis_word/3
+!./data/acgis_word/4
+!./data/acgis_word/5
+!.gitignore
+!./node_modules/*
