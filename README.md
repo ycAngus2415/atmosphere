@@ -1,6 +1,6 @@
-[toc]
+[TOC]
 
-#Atmosphere
+# Atmosphere
 * rain
 * snow
 * wind
