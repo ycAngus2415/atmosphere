@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link href="lib/CesiumUnminified/Widgets/widgets.css" rel="stylesheet" />
+  <link href="Cesium/Sandcastle/templates/bucket.css" rel="stylesheet" />
+  <style>
+    .myPanel {
+      position: absolute;
+      top: 5px;
+      left: 5px;
+    }
+    #toolbar {
+      left: 150px;
+    }
+  </style>
+  <script type="text/javascript" src="./Cesium/Cesium.js"></script>
+  <script src="lib/spector.bundle.js"></script>
+  <script type="text/javascript" src='./lib/echarts/echarts.js'></script>
+  <script type="text/javascript" src='./lib/echarts/echarts-gl.js'></script>
+  <script type="text/javascript" src="lib/dat.gui.min.js"></script>
+  <script type="text/javascript" src="Cesium/Sandcastle/Sandcastle-header.js"></script>
+  <script type="text/javascript" src="./lib/CesiumUnminified/viewerCesiumNavigationMixin.js"></script>
+  <script type="text/javascript" src="./lib/FlowEcharts.js"></script>
+  
+  <script src="lib/netcdfjs.js"></script>
+</head>
+
+<body>
+  <div id="cesiumContainer" class="fullSize"></div>
+  <div id="loadingOverlay"><h1>Loading...</h1></div>
+  <div id="toolbar">
+    <div>
+      颜色范围:<input type="range" min="0" max="7" step="0.01" data-bind="value: Hue, valueUpdate: 'input'">
+    </div><button type="button" data-bind="click: changeColor">点击</button>
+  </div>
+  <script src="util.js"></script>
+  <script src="dataProcess.js"></script>
+  <script src="customPrimitive.js"></script>
+  <script src="particlesComputing.js"></script>
+  <script src="particlesRendering.js"></script>
+  <script src="particleSystem.js"></script>
+  <script src="wind3D.js"></script>
+  <script src="gui.js"></script>
+  <script src ="CesiumHeatmap.js"> </script>
+  <script type="text/javascript" data-main="config" src="lib/requirejs-2.1.9/require.js"></script>
+  
+  <!-- <script type="text/javascript" src="./lib/GLMap.js"></script> -->
+  
+  
+  
+</body>
+
+</html>
