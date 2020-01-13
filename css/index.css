@@ -1,0 +1,237 @@
+.top{
+    position: fixed;
+    top:0;
+    left:0;
+    right:0;
+    height:60px;
+    text-align: center;
+    color:#fff;
+    line-height: 60px;
+    font-size: 30px;
+    background-color: rgba(0,0,0,0.3);
+    border-top: 2px solid #00FFFF;
+    z-index: 9999;
+}
+.container{
+    position: absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom: 0;
+    overflow: hidden;
+}
+.video-box{
+    position: absolute;
+    top:0;
+    left:0;
+    width: 300px;
+    height:300px;
+    z-index: -1;
+    opacity: 0;
+    user-select: none; /*ç¦æ­¢é€‰ä¸­*/
+    pointer-events: none; /*é¼ æ ‡ç©¿é€*/
+
+}
+#video{
+    position:absolute;
+    width: 100%;
+    height:100%;
+    user-select: none; /*ç¦æ­¢é€‰ä¸­*/
+    pointer-events: none; /*é¼ æ ‡ç©¿é€*/
+}
+.logo{
+    position: absolute;
+    top:5px;
+    left:20px;
+    width: 80px;
+    height:45px;
+    background: url("../images/logo.png") no-repeat center top;
+    background-size:35px 40px;
+    color:#fff;
+    font-size: 12px;
+    line-height: 90px;
+}
+.download{
+    position: absolute;
+    top:0;
+    right:40px;
+    font-size: 14px;
+    color:#fff
+}
+body{
+    background-color: #f5f5f5;
+}
+.map{
+    position: absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom: 0;
+    z-index: 111;
+}
+.label{
+    display: none;
+    position: absolute;
+    top:50%;
+    left:50%;
+    width: 180px;
+    height:90px;
+    margin-left: -90px;
+    margin-top: -45px;
+    text-align: center;
+    user-select: none;
+    z-index: 333;
+}
+.label .label-tips{
+    height:60px;
+    line-height: 60px;
+    text-align: center;
+    color:#fff;
+    font-size: 25px;
+
+}
+.label .btn{
+    color:#fff;
+    border: 1px solid #fff;
+    text-align: center;
+    font-size: 14px;
+    border-radius: 30px;
+    line-height: 30px;
+    height:30px;
+    width: 80px;
+    margin: 0 auto;
+    cursor: pointer;
+    opacity: 0.8
+}
+.label .btn:hover{
+    opacity: 1;
+}
+.topmenu{
+    position: absolute;
+    top:-200px;
+    left:50px;
+    height:auto;
+    width: auto;
+    color:#fff;
+    padding: 15px 0 15px 20px;
+    box-sizing: border-box;
+    z-index: 222;
+}
+.topmenu .tit{
+    height:28px;
+    font-size: 18px;
+    margin:15px 0;
+    padding-left: 15px;
+}
+.topmenu a{
+    display: block;
+    padding-left: 30px;
+    font-size: 12px;
+    height:30px;
+    line-height: 30px;
+    color:#dddddd;
+}
+.topmenu a:hover{
+    color:#fff;
+}
+
+.charts{
+    position: absolute;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+}
+a.ys-cesium{
+    color:#fff;
+}
+a.ys-cesium:hover{
+    opacity: 0.8;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.menu{
+    width: auto;
+    text-align: left;
+}
+
+.menu th{
+    border-left: 1px solid #00aaFF;
+}   
+.menu td{
+    padding-left: 20px;
+    font-size: 15px;
+    border-left: 1px solid #00aaFF;
+    width: 500px;
+
+}
+.option{
+    user-select:none;
+}
+.option:hover{
+    color: #00aaff;
+}
+.option:active{
+    color: #00bbff;
+}
+
+.myPanel {
+  background:rgba(0,0,0,0.3);
+  position: absolute;
+  top: 100px;
+  right: 20px;
+}
+#toolbar {
+  right: 10px;
+  top: 200px;
+}
+.menuOption{
+  display: none;
+  width: auto;
+}
+.Title{
+    font:20px bold;
+  /*font-size:20px;*/
+}
+#file{
+    position:relative;
+    left:400px;
+}
+#echartsBar{
+    width:1220px;
+    position:absolute;
+}
+.floatdiv{
+    /*display:none;*/
+    position:absolute;
+    left:20px;
+    top:100px;
+    height: 650px;
+    width: 1200px;
+    float: left;
+}
+h1 {
+    line-height: 60px;
+    height: 60px;
+    background: #146402;
+    text-align: center;
+    font-weight: bold;
+    color: #eee;
+    font-size: 14px;
+}
+.closetemp{
+    position:absolute;
+    left: 1210px;
+    top: 100px;
+}
+img.closetemp:hover{
+    color: #00aaff;
+}
+img.closetemp:active{
+    color: #00bbff;
+}
+
+#flyOptionId td{
+    width:50px;
+}

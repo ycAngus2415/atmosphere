@@ -4,18 +4,17 @@
 <head>
   <link href="lib/CesiumUnminified/Widgets/widgets.css" rel="stylesheet" />
   <link href="Cesium/Sandcastle/templates/bucket.css" rel="stylesheet" />
+  <link href="css/ysc.css" rel="stylesheet" />
+  <link href="css/index.css" rel="stylesheet" />
   <style>
-    .myPanel {
-      position: absolute;
-      top: 5px;
-      left: 5px;
-    }
-    #toolbar {
-      left: 150px;
-    }
+    
+
+
   </style>
   <script type="text/javascript" src="./Cesium/Cesium.js"></script>
   <script src="lib/spector.bundle.js"></script>
+
+  <!-- <script type="text/javascript" src='./lib/jquery-2.1.1/jquery.min'></script> -->
   <script type="text/javascript" src='./lib/echarts/echarts.js'></script>
   <script type="text/javascript" src='./lib/echarts/echarts-gl.js'></script>
   <script type="text/javascript" src="lib/dat.gui.min.js"></script>
@@ -29,11 +28,96 @@
 <body>
   <div id="cesiumContainer" class="fullSize"></div>
   <div id="loadingOverlay"><h1>Loading...</h1></div>
+  <div class='echartsBar' id='echart'></div>
   <div id="toolbar">
-    <div>
-      颜色范围:<input type="range" min="0" max="7" step="0.01" data-bind="value: Hue, valueUpdate: 'input'">
-    </div><button type="button" data-bind="click: changeColor">点击</button>
+    <div id='contourmenu' class="menuOption">
+      <center><div class='Title'>插入地形图</div>
+      </center><label class="option" id="closeId1" style="position:absolute;right:10px;top:5px;float:right">关闭</label>
+      <table>
+        <tr>
+          <td>经度开始：<input type="range" min="-180" max="180" step="1" data-bind="value: startLat, valueUpdate: 'input'">
+          <input type="text" size="2" data-bind="value: startLat"></td>
+          <td>
+          经度结束：<input type="range" min="-180" max="180" step="1" data-bind="value: endLat, valueUpdate: 'input'">
+          <input type="text" size="2" data-bind="value: endLat">
+          </td>
+        </tr>
+        <tr>
+          <td>
+            纬度开始：<input type="range" min="-90" max="90" step="1" data-bind="value: startLon, valueUpdate: 'input'">
+            <input type="text" size="2" data-bind="value: startLon">
+          </td>
+          <td>
+            纬度结束：<input type="range" min="-90" max="90" step="1" data-bind="value: endLon, valueUpdate: 'input'">
+            <input type="text" size="2" data-bind="value: endLon">
+          </td> 
+        </tr>
+      </table>
+    
+    <!-- <input type="file" name="fileToUpload" id="fileToUpload" onchange="changeColor()"> -->
+      <label name="fileToUpload" id="file" data-bind="click: change" class='option'>打开文件</label>
+      <input type="file" name="fileToUpload" id="fileToUpload" hidden>
+    <!-- <button type="button" data-bind="click: changeColor">点击</button> -->
+    </div>
+    <div id='flyOptionId' class="menuOption">
+      <center class='Title'>飞行控制</center>
+      <label class="option" id="closeId2" style="position:absolute;right:10px;top:5px;float:right">关闭</label>
+      <table>
+        <tr>
+          <td><label id="startfly" class="option">开始</label></td>
+          <td><label id="pouse" class="option">暂停</label></td>
+          <td><label id="foward" class="option">前进</label></td>
+          <td><label id="back" class="option">后退</label></td>
+          <td><label id="tracked" class="option">跟踪</label></td>
+          <td><label id="custom" class="option">自定义</label></td>
+        </tr>
+      </table>
+    </div>
+    <div id='flowId' class="menuOption">
+      <label class="option" id="closeFlow" style="position:absolute;right:200px;top:100px;font-size:20px;">关闭</label>
+    </div>
   </div>
+  <div class="topmenu">
+    <table class="menu">
+        <tr>
+          <th scope="col" class="tit">气象要素</th>
+          <th scope="col" class="tit">测量工具</th>
+          <th scope="col" class="tit">航线规划</th>
+          <th scope="col" class="tit">测试内容</th>
+          <th scope="col" class="tit">数据统计</th>
+          <th scope="col" class="tit">关于</th>
+        </tr>
+        <tr valign="top">
+          <td>
+            <div class="option" id="rain"><label>雨显示</label></div>
+            <div class="option" id="snow"><label>雪显示</label></div>
+            <div class="option" id="heat"><label>温度显示</label></div>
+            <div class="option" id="wind"><label>风显示</label></div>
+          </td>
+          <td>
+            <div class="option"><label>距离测量</label></div>
+            <div class="option"><label>面积测量</label></div>
+          </td>
+          <td>
+            <div class="option"><label id="flyId">路径航线</label></div>
+            <div class="option"><label>路径自定义</label></div>
+          </td>
+          <td>
+            <div class="option" id="contour"><label>高程图添加</label></div>
+          </td>
+          <td>
+            <div class="option" id="tempState"><label>温度统计</label></div>
+            <div class="option" id="salState"><label>盐度统计</label></div>
+            <div class="option" id="testheat"><label>温度图</label></div>
+            <div class="option" id="flow"><label>人口流动图</label></div>
+          </td>
+          <td>
+            <div class="option"><label>关于我们</label></div>
+          </td>
+        </tr>
+        
+    </table>
+    </div>
   <script src="util.js"></script>
   <script src="dataProcess.js"></script>
   <script src="customPrimitive.js"></script>

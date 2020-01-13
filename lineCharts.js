@@ -1925,9 +1925,8 @@ class LineCharts{
       },
       getOption: function(data) {
         return {
-
           animation: false,
-          backgroundColor: 'rgba(0, 0, 0, 0.5)',
+          // backgroundColor: 'rgba(0, 0, 0, 0.5)',
           GLMap: {},
           title: { text: '人口迁徙图', left: 'center', textStyle: { color: '#fff' } },
           legend: {
@@ -1942,6 +1941,7 @@ class LineCharts{
           series: [{
             name: '地点',
             type: 'effectScatter',
+            //type: 'bar3D',
             //type: 'heatmap',
             coordinateSystem: 'GLMap',
             zlevel: 2,
@@ -1977,6 +1977,8 @@ class LineCharts{
   }
   initWork(){
     this.workEcharts.create(this.viewer);
+    this.viewer.camera.flyTo({
+                    destination : Cesium.Cartesian3.fromDegrees(120, 32.71, 10000000.0)});
     this.workEcharts.activate();
   }
   destroy(){

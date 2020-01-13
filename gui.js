@@ -23,7 +23,7 @@ const globeLayers = [
     { name: "WMS:Temperature", type: "WMS", layer: "Temperature_surface", ColorScaleRange: '204.1,317.5' },
     //{ name: "WMS:Wind Speed", type: "WMS", layer: "Wind_speed_gust_surface", ColorScaleRange: '0.1095,35.31' },
     //{ name: "WorldTerrain", type: "WorldTerrain" }
-    {name: "HeatMap", type:"heatmap"}
+    //{name: "HeatMap", type:"heatmap"}
 ]
 
 const defaultLayerOptions = {

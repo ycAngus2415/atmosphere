@@ -257,14 +257,14 @@ class Fly{
         /**
          * 停止飞行
          **/
-    stopFly(clearData, viewer)
+    stopFly(clearData)
     {
-        viewer.trackedEntity = undefined;
+        this.mViewer.trackedEntity = undefined;
         var start = Cesium.JulianDate.fromDate(new Date());
-        viewer.clock.startTime = start.clone();
+        this.mViewer.clock.startTime = start.clone();
         var stop = Cesium.JulianDate.addSeconds(start, 300000000, new Cesium.JulianDate());
-        viewer.clock.stopTime = stop.clone();
-        viewer.entities.removeAll();
+        this.mViewer.clock.stopTime = stop.clone();
+        this.mViewer.entities.removeAll();
         if(clearData)
             this.mFlyPath = [];
     }

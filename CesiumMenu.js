@@ -1,6 +1,6 @@
 class Menu{
     constructor(viewer, mode){
-        var box = new dat.GUI({ autoPlace: false });
+        
         this.viewer = viewer;
         var that = this;
         var wind_gui;
@@ -15,18 +15,7 @@ class Menu{
                 requirejs(['fly'],function(){
                     var flyModel = new Fly(viewer);
                     flyModel.initFly();
-                    if(wind_gui != undefined){
-                        box.removeFolder(wind_gui);
-                        viewer.scene.primitives.removeAll();
-                    }
-                    if(snow_gui !=undefined){
-                        box.removeFolder(snow_gui);
-                        viewer.scene.primitives.removeAll();
-                    }
-                    if(rain_gui !=undefined){
-                        box.removeFolder(rain_gui);
-                        viewer.scene.primitives.removeAll();
-                    }
+                    $("#flyOptionId").fadeIn();
                     var option1 = function(){
                         this.StartFly = function(){flyModel.startFly();}
                         this.PouseFly = function(){
@@ -38,145 +27,135 @@ class Menu{
                         this.FlyBack = function(){flyModel.flyBack();};
                         this.FlyForward = function(){flyModel.flyForward();}
                         this.CustomFly = function(){flyModel.customFly();}
+                        this.stopFly = function(clear){flyModel.stopFly(clear);}
                     };
-                    fly_gui = box.addFolder("AirFly");
                     var options1 = new option1();
-                    fly_gui.add(options1, "StartFly");
-                    fly_gui.add(options1, "PouseFly");
-                    fly_gui.add(options1, "Tracked");
-                    fly_gui.add(options1, "FlyBack");
-                    fly_gui.add(options1, "FlyForward");
-                    fly_gui.add(options1, "CustomFly");
-                 });
+                    $("#startfly").click(options1.StartFly);
+                    $("#pouse").click(options1.PouseFly);
+                    $("#tracked").click(options1.Tracked);
+                    $("#back").click(options1.FlyBack);
+                    $("#foward").click(options1.FlyForward);
+                    $("#custom").click(options1.CustomFly);
+                    $("#closeId2").click(function(){
+                        $("#flyOptionId").fadeOut();
+                        options1.stopFly(true);
+                        // viewer.entities.removeAll();
+                    })
 
-            }
+                 });
+            };
             this.ShowWind = function(){
-                if(fly_gui != undefined){
-                    box.removeFolder(fly_gui);
-                    viewer.entities.removeAll();
-                }
-                if(snow_gui !=undefined){
-                    box.removeFolder(snow_gui);
-                    viewer.scene.primitives.removeAll();
-                }
-                if(rain_gui !=undefined){
-                    box.removeFolder(rain_gui);
-                    viewer.scene.primitives.removeAll();
-                }
-                wind_gui = box.addFolder("Windy");
-                var panel = new Panel(viewer,wind_gui);
+                var box = new dat.GUI({ autoPlace: false });
+                var panel = new Panel(viewer,box);
                 var wind3D = new Wind3D(
                     panel,
                     mode,
                     viewer);
+                var panelContainer = document.getElementsByClassName('cesium-viewer').item(0);
+                box.domElement.classList.add('myPanel');
+                panelContainer.appendChild(box.domElement);
                 viewer.camera.flyTo({
-                    destination : Cesium.Cartesian3.fromDegrees(120, 32.71, 30000000.0)});
-                wind_gui.open();
-
-            }
+                    destination : Cesium.Cartesian3.fromDegrees(120, 32.71, 10000000.0)});
+                box.open();
+            };
             this.ShowSnow = function(){
-                if(fly_gui !=undefined){
-                    box.removeFoler(fly_gui);
-                    viewer.entities.removeAll();
-                }
-                if(wind_gui != undefined){
-                    box.removeFolder(wind_gui);
-                    viewer.scene.primitives.removeAll();
-                }
-                if(rain_gui != undefined){
-                    box.removeFolder(rain_gui);
-                    viewer.scene.primitives.removeAll();
-                }
-                snow_gui = box.addFolder("Snow");
+                
                 requirejs(['snow'], function(snow){
                     snow.init(viewer);
                 });
                 viewer.scene.globe.depthTestAgainstTerrain = true;
                 that.resetCameraFunction();
-            }
+            };
             this.ShowRain = function(){
-                if(fly_gui !=undefined){
-                    box.removeFoler(fly_gui);
-                    viewer.entities.removeAll();
-                }
-                if(wind_gui != undefined){
-                        box.removeFolder(wind_gui);
-                        viewer.scene.primitives.removeAll();
-                }
-                if(snow_gui !=undefined){
-                    box.removeFolder(snow_gui);
-                    viewer.scene.primitives.removeAll();
-                }
-                rain_gui = box.addFolder("Rain");
+                
                 requirejs(['rain'], function(rain){
                     rain.init(viewer);
                 });
-                viewer.scene.globe.depthTestAgainstTerrain = true;
+                
                 that.resetCameraFunction();
-            }
+            };
             this.ShowCloud = function(){
-                if(fly_gui !=undefined){
-                    box.removeFoler(fly_gui);
-                    viewer.entities.removeAll();
-                }
-                if(wind_gui != undefined){
-                        box.removeFolder(wind_gui);
-                        viewer.scene.primitives.removeAll();
-                }
-                if(snow_gui !=undefined){
-                    box.removeFolder(snow_gui);
-                    viewer.scene.primitives.removeAll();
-                }
-                if(rain_gui != undefined){
-                    box.removeFolder(rain_gui);
-                    viewer.scene.primitives.removeAll();
-                }
-                cloud_gui = box.addFolder("Cloud");
+                
                 requirejs(['cloud'], function(cloud){
                     cloud.init(viewer);
                 });
-            }
+            };
             this.ShowFlow = function(){
-                flow_gui = box.addFolder("Flow");
+                $("#flowId").fadeIn();
                 flow = new LineCharts(viewer);
-                var option2 = function(){
-                    this.destroy = function(){flow.destroy();}
+                $("#closeFlow").click(function(){
+                    $("#flowId").fadeOut();
+                    flow.destroy();
+                });
+            };
+            this.ShowHeat = function(){
+                let bounds = {
+                    west: 110,
+                    east: 130,
+                    south: 10,
+                    north: 30
                 }
-                var option22 = new option2()
-                flow_gui.add(option22, 'destroy');
-                flow_gui.open();
+                let heatMap = CesiumHeatmap.create(
+                    viewer,
+                    bounds,
+                    {
+                        maxopacity: 0.9
+                    })
+                let data = [];
+                for(var i = 0;i<1000;i++){
+                    data.push({"x": bounds.west+Math.random()*(bounds.east-bounds.west),"y": bounds.south+Math.random()*(bounds.north-bounds.south),"value": Math.round(Math.random()*100)});
+                }
+                let valueMin = 0;
+                let valueMax = 100;
+                heatMap.setWGS84Data(valueMin, valueMax, data);
+                
+                let rectangle = Cesium.Rectangle.fromDegrees(bounds.west, bounds.south, bounds.east, bounds.north);
+                viewer.camera.flyTo({
+                    destination: rectangle
+                });
             }
         }
-        var button = box.addFolder("Rendering");
         var opts = new op();
-        button.add(opts, 'ShowFly');
-        button.add(opts, 'ShowWind');
-        button.add(opts, 'ShowSnow');
-        button.add(opts, 'ShowRain');
-        button.add(opts, 'ShowCloud');
-        button.add(opts, 'ShowFlow');
-        button.open();
-        var panelContainer = document.getElementsByClassName('cesium-viewer').item(0);
-        box.domElement.classList.add('myPanel');
-        panelContainer.appendChild(box.domElement);
-        var viewModel = {
-            Hue: 0,
-            enableContour: false,
-            contourSpacing: 150.0,
-            contourWidth: 2.0,
-            selectedShading: 'elevation',
-            changeColor: function() {
-                console.log("点击我了");
+        $('#rain').click(opts.ShowRain);
+        $('#snow').click(opts.ShowSnow);
+        $('#heat').click(opts.ShowHeat);
+        $('#wind').click(opts.ShowWind);
+        $('#flyId').click(opts.ShowFly);
+        $("#flow").click(opts.ShowFlow);
+        // $('#temp').click()
+        
+        
+        let viewModel = {
+            startLat: 0,//left
+            endLat: 10,//right
+            startLon: 0,//button
+            endLon: 10,//up
+            change: function(){
+                $("#fileToUpload").trigger('click');
+                
             }
         };
         Cesium.knockout.track(viewModel);
         var toolbar = document.getElementById('toolbar');
         Cesium.knockout.applyBindings(viewModel, toolbar);
+        Cesium.knockout.getObservable(viewModel, 'startLat');
+        Cesium.knockout.getObservable(viewModel, 'endLat');
+        Cesium.knockout.getObservable(viewModel, 'startLon');
+        Cesium.knockout.getObservable(viewModel, 'endLon');
         
-        Cesium.knockout.getObservable(viewModel, 'Hue').subscribe(function(newvalue){
-            var layer = viewer.imageryLayers.get(1);
-            layer['hue'] = newvalue;
-        });
+        $("#fileToUpload").change(function(e){
+            var f = e.currentTarget.files[0];
+            var lat1 = viewModel.startLat;
+            var lon1 = viewModel.startLon;
+            var lat2 = viewModel.endLat;
+            var lon2 = viewModel.endLon;
+            var layers = viewer.scene.imageryLayers;
+            layers.addImageryProvider(new Cesium.SingleTileImageryProvider({
+                url : './data/'+f.name,
+                rectangle : Cesium.Rectangle.fromDegrees(lat1, lon1, lat2, lon2)
+            }));
+        })
+        
     }
 
     resetCameraFunction(){
