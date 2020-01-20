@@ -6,11 +6,7 @@
   <link href="Cesium/Sandcastle/templates/bucket.css" rel="stylesheet" />
   <link href="css/ysc.css" rel="stylesheet" />
   <link href="css/index.css" rel="stylesheet" />
-  <style>
-    
 
-
-  </style>
   <script type="text/javascript" src="./Cesium/Cesium.js"></script>
   <script src="lib/spector.bundle.js"></script>
 
@@ -23,9 +19,13 @@
   <script type="text/javascript" src="./lib/FlowEcharts.js"></script>
   
   <script src="lib/netcdfjs.js"></script>
+  <script src="kriging/kriging.min.js"></script>
+  <script src="kriging/bounds.js"></script>
+  <script src ="kriging/turf.min.js"></script>
 </head>
 
 <body>
+  <canvas id="canvasMap" style="display:none;"></canvas>
   <div id="cesiumContainer" class="fullSize"></div>
   <div id="loadingOverlay"><h1>Loading...</h1></div>
   <div class='echartsBar' id='echart'></div>
@@ -53,11 +53,8 @@
           </td> 
         </tr>
       </table>
-    
-    <!-- <input type="file" name="fileToUpload" id="fileToUpload" onchange="changeColor()"> -->
       <label name="fileToUpload" id="file" data-bind="click: change" class='option'>打开文件</label>
       <input type="file" name="fileToUpload" id="fileToUpload" hidden>
-    <!-- <button type="button" data-bind="click: changeColor">点击</button> -->
     </div>
     <div id='flyOptionId' class="menuOption">
       <center class='Title'>飞行控制</center>
@@ -76,6 +73,9 @@
     <div id='flowId' class="menuOption">
       <label class="option" id="closeFlow" style="position:absolute;right:200px;top:100px;font-size:20px;">关闭</label>
     </div>
+    <div id='tempId' class="menuOption">
+      <label class="option" id="closeTemp" style="position:absolute;right:200px;top:100px;font-size:20px;">关闭</label>
+    </div>
   </div>
   <div class="topmenu">
     <table class="menu">
@@ -93,6 +93,7 @@
             <div class="option" id="snow"><label>雪显示</label></div>
             <div class="option" id="heat"><label>温度显示</label></div>
             <div class="option" id="wind"><label>风显示</label></div>
+            <div class="option" id="temp"><label>温度大面显示</label></div>
           </td>
           <td>
             <div class="option"><label>距离测量</label></div>
@@ -126,7 +127,7 @@
   <script src="particleSystem.js"></script>
   <script src="wind3D.js"></script>
   <script src="gui.js"></script>
-  <script src ="CesiumHeatmap.js"> </script>
+  <script src ="CesiumHeatmap.js"></script>
   <script type="text/javascript" data-main="config" src="lib/requirejs-2.1.9/require.js"></script>
   
   <!-- <script type="text/javascript" src="./lib/GLMap.js"></script> -->

@@ -114,6 +114,11 @@ class Menu{
                     destination: rectangle
                 });
             }
+            this.ShowTemp = function(){
+                requirejs(['temputureMain'],function(){
+                    new temputureMain(viewer);
+                })
+            }
         }
         var opts = new op();
         $('#rain').click(opts.ShowRain);
@@ -122,6 +127,7 @@ class Menu{
         $('#wind').click(opts.ShowWind);
         $('#flyId').click(opts.ShowFly);
         $("#flow").click(opts.ShowFlow);
+        $("#temp").click(opts.ShowTemp);
         // $('#temp').click()
         
         

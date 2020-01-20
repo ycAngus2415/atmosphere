@@ -19,7 +19,9 @@ requirejs.config({
         "css": "./css",
         "tempstat": "./tempstat",
         "paral": "./paral",
-        "testheatmap": "testHeatmap"
+        "test": './test',
+        "temputureTestData": './kriging/data',
+        "temputureMain": './kriging/temputureMain'
     },
     shim: {
         'echarts_gl': {
@@ -28,7 +30,7 @@ requirejs.config({
     }
 });
 
-requirejs(['init', 'fly', 'CesiumMenu','lineCharts','jquery','css','testheatmap'], function(init) {
+requirejs(['init','fly', 'CesiumMenu','lineCharts','jquery','css','temputureTestData','contour'], function(init) {
 // //require(["./lib/GLMap.js"], function() ;
     const mode = {
         debug: demo ? false : true
@@ -36,12 +38,12 @@ requirejs(['init', 'fly', 'CesiumMenu','lineCharts','jquery','css','testheatmap'
     var viewer = init.initCesium(mode);
     var menu = new Menu(viewer, mode);
     var index = 0;
-    //new Contour(viewer);
-    $('#testheat').click(function(){
-        if(index==0){
-            new testHeatmap(viewer);
-            index+=1;
-        }
-    })
-    //FlyModel(this.viewer);
+    // new Contour(viewer);
+    // $('#testheat').click(function(){
+    //     if(index==0){
+    //         new testHeatmap(viewer);
+    //         index+=1;
+    //     }
+    // })
+    
 });

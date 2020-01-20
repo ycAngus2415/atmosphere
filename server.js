@@ -3,6 +3,7 @@
 (function() {
     var express = require('express');
     var compression = require('compression');
+    var bodyParser = require('body-parser');
     var fs = require('fs');
     var url = require('url');
     var request = require('request');
@@ -116,6 +117,14 @@
         });
     }
 
+    app.use(bodyParser.json({limit: '50mb'}));
+    app.post('/saveJSON',function(req,res,next){
+        // console.log(req.body);
+        var str_json = JSON.stringify(req.body,"","\t"); 
+        fs.writeFile('graph.json', str_json, 'utf8', function(){
+          console.log("保存完成");
+        });
+    });
     app.get('/proxy/*', function(req, res, next) {
         // look for request like http://localhost:8080/proxy/http://example.com/file?query=1
         var remoteUrl = getRemoteUrlFromParam(req);
