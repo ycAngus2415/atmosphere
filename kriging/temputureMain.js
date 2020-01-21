@@ -26,10 +26,11 @@ class temputureMain{
         });
         $("#closeTemp").click(function(){
             viewer.imageryLayers.remove(temptureLayer,true);
-            console.log(promise)
-            promise.then(function(d){
-                viewer.dataSources.remove(d,true);
-            });
+            //console.log(promise)
+            // promise.then(function(d){
+            //     viewer.dataSources.remove(d,true);
+            // });
+            viewer.dataSources.removeAll(true);
             viewer.camera.flyHome();
             $("#tempId").fadeOut();
         })

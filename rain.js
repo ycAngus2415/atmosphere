@@ -38,10 +38,11 @@ define(function(viewer){
 			    imageSize : rainImageSize,
 			    updateCallback : rainUpdate
 			});
-			scene.primitives.add(rainSystem);
+			this.prain = scene.primitives.add(rainSystem);
+			return this.prain;
 		},
-		destroy: function(viewer){
-			viewer.scene.primitives.removeAll();
+		destroy: function(viewer,prain){
+			viewer.scene.primitives.remove(prain);
 		}
 	}
 })

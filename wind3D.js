@@ -39,15 +39,25 @@ class Wind3D {
 
     addPrimitives() {
         // the order of primitives.add() should respect the dependency of primitives
-        this.scene.primitives.add(this.particleSystem.particlesComputing.primitives.getWind);
-        this.scene.primitives.add(this.particleSystem.particlesComputing.primitives.updateSpeed);
-        this.scene.primitives.add(this.particleSystem.particlesComputing.primitives.updatePosition);
-        this.scene.primitives.add(this.particleSystem.particlesComputing.primitives.postProcessingPosition);
-        this.scene.primitives.add(this.particleSystem.particlesComputing.primitives.postProcessingSpeed);
+        this.pw = this.scene.primitives.add(this.particleSystem.particlesComputing.primitives.getWind);
+        this.ps = this.scene.primitives.add(this.particleSystem.particlesComputing.primitives.updateSpeed);
+        this.pup = this.scene.primitives.add(this.particleSystem.particlesComputing.primitives.updatePosition);
+        this.ppp = this.scene.primitives.add(this.particleSystem.particlesComputing.primitives.postProcessingPosition);
+        this.pps = this.scene.primitives.add(this.particleSystem.particlesComputing.primitives.postProcessingSpeed);
 
-        this.scene.primitives.add(this.particleSystem.particlesRendering.primitives.segments);
-        this.scene.primitives.add(this.particleSystem.particlesRendering.primitives.trails);
-        this.scene.primitives.add(this.particleSystem.particlesRendering.primitives.screen);
+        this.psg = this.scene.primitives.add(this.particleSystem.particlesRendering.primitives.segments);
+        this.pt = this.scene.primitives.add(this.particleSystem.particlesRendering.primitives.trails);
+        this.psc = this.scene.primitives.add(this.particleSystem.particlesRendering.primitives.screen);
+    }
+    removePrimitives(){
+        this.scene.primitives.remove(this.psc);
+        this.scene.primitives.remove(this.pt);
+        this.scene.primitives.remove(this.psg);
+        this.scene.primitives.remove(this.pps);
+        this.scene.primitives.remove(this.ppp);
+        this.scene.primitives.remove(this.pup);
+        this.scene.primitives.remove(this.ps);
+        this.scene.primitives.remove(this.pw);
     }
 
     updateViewerParameters() {

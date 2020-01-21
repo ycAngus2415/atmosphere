@@ -39,10 +39,11 @@ define(function(viewer){
 			    maximumImageSize : maximumSnowImageSize,
 			    updateCallback : snowUpdate
 			});
-			scene.primitives.add(snowSystem);
+			var psnow = scene.primitives.add(snowSystem);
+			return psnow
 		},
-		destroy: function(viewer){
-			viewer.primitives.removeAll();
+		destroy: function(viewer,psnow){
+			viewer.scene.primitives.remove(psnow);
 		}
 	}
 

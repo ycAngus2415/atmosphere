@@ -39,6 +39,7 @@ class Menu{
                     $("#closeId2").click(function(){
                         $("#flyOptionId").fadeOut();
                         options1.stopFly(true);
+                        viewer.camera.flyHome();
                         // viewer.entities.removeAll();
                     })
 
@@ -46,6 +47,9 @@ class Menu{
             };
             this.ShowWind = function(){
                 var box = new dat.GUI({ autoPlace: false });
+                $("#windId").fadeIn();
+                viewer.camera.flyTo({
+                    destination : Cesium.Cartesian3.fromDegrees(120, 32.71, 10000000.0)});
                 var panel = new Panel(viewer,box);
                 var wind3D = new Wind3D(
                     panel,
@@ -54,22 +58,40 @@ class Menu{
                 var panelContainer = document.getElementsByClassName('cesium-viewer').item(0);
                 box.domElement.classList.add('myPanel');
                 panelContainer.appendChild(box.domElement);
-                viewer.camera.flyTo({
-                    destination : Cesium.Cartesian3.fromDegrees(120, 32.71, 10000000.0)});
+
+                $("#closewind").click(function(){
+                    panelContainer.removeChild(box.domElement);
+                    box.domElement.classList.remove('myPanel');
+                    $("#windId").fadeOut();
+                    wind3D.removePrimitives();
+                    viewer.camera.flyHome();
+                })
+                
                 box.open();
             };
             this.ShowSnow = function(){
-                
+                $("#snowId").fadeIn();
                 requirejs(['snow'], function(snow){
-                    snow.init(viewer);
+                    var psnow = snow.init(viewer);
+                    $("#closesnow").click(function(){
+                        $("#snowId").fadeOut();
+                        snow.destroy(viewer,psnow);
+                        viewer.camera.flyHome();
+                    })
                 });
-                viewer.scene.globe.depthTestAgainstTerrain = true;
+                // viewer.scene.globe.depthTestAgainstTerrain = true;
                 that.resetCameraFunction();
+                
             };
             this.ShowRain = function(){
-                
+                $("#rainId").fadeIn();
                 requirejs(['rain'], function(rain){
-                    rain.init(viewer);
+                    var prain= rain.init(viewer);
+                    $("#closerain").click(function(){
+                        $("#rainId").fadeOut();
+                        rain.destroy(viewer,prain);
+                        viewer.camera.flyHome();
+                    })
                 });
                 
                 that.resetCameraFunction();
@@ -89,6 +111,7 @@ class Menu{
                 });
             };
             this.ShowHeat = function(){
+                $("#heatId").fadeIn();
                 let bounds = {
                     west: 110,
                     east: 130,
@@ -108,6 +131,12 @@ class Menu{
                 let valueMin = 0;
                 let valueMax = 100;
                 heatMap.setWGS84Data(valueMin, valueMax, data);
+                console.log(viewer.entities);
+                $("#closeheat").click(function(){
+                    $("#heatId").fadeOut();
+                    viewer.entities.removeAll();
+                    viewer.camera.flyHome();
+                })
                 
                 let rectangle = Cesium.Rectangle.fromDegrees(bounds.west, bounds.south, bounds.east, bounds.north);
                 viewer.camera.flyTo({

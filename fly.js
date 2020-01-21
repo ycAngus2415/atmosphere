@@ -16,12 +16,12 @@ class Fly{
         {
             this.mFlyPath[0] = [
             {longitude:116.538799, dimension:39.9948, height:0, time:0},
-            {longitude:116.130034, dimension:38.291387, height:50000, time:120},
-            {longitude:116.415192, dimension:34.841955, height:500000, time:240},
-            {longitude:117.261468, dimension:31.831171, height:5000, time:360}, 
-            {longitude:115.881671, dimension:28.70164, height:5000, time:480},
-            {longitude:116.120835, dimension:24.308311, height:5000, time:600},
-            {longitude:113.269254, dimension:23.13956, height:0, time:720}];
+            {longitude:116.130034, dimension:38.291387, height:50000, time:30},
+            {longitude:116.415192, dimension:34.841955, height:500000, time:60},
+            {longitude:117.261468, dimension:31.831171, height:5000, time:120}, 
+            {longitude:115.881671, dimension:28.70164, height:5000, time:150},
+            {longitude:116.120835, dimension:24.308311, height:5000, time:180},
+            {longitude:113.269254, dimension:23.13956, height:0, time:210}];
 
             //设置初始位置
             this.mViewer.camera.flyTo({
@@ -156,7 +156,7 @@ class Fly{
          **/
     flyForward()
     {
-        this.mFlySpeed = 10;
+        this.mFlySpeed = 100;
         this.mViewer.clock.multiplier = this.mFlySpeed;
     }
 
