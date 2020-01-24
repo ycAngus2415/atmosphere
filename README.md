@@ -18,4 +18,6 @@
     change webgl coordinate or draw picture in <div> element.
 * custom route
 * dat.gui
+* measure Spherical distance and Spherical polygon area
+* coordinate present
 

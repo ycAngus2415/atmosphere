@@ -129,14 +129,13 @@ class temputureMain{
     //featurecollection<multilinestring>,featurecollection<multipolygon>
     lineWithinPolygon(fcmultilinestring,polygon){
         
-        console.log(fcmultilinestring)
-        console.log('多边形',polygon);
+        // console.log(fcmultilinestring)
+        // console.log('多边形',polygon);
         // if(fcmultilinestring.type!="FeatureCollection" &&fcmultipolygon.type!="Feature")
         // {
         //     console.log("featurecollections are required")
         //     return false;
         // }
-        var newline = [];
         for(var i=0;i<fcmultilinestring.features.length;i++){
             var multilinestring = fcmultilinestring.features[i].geometry
             var temp = fcmultilinestring.features[i].properties.temperature;
@@ -152,17 +151,13 @@ class temputureMain{
                             strokeWidth: 1,
                         }));
                     }
-                    
                 }
-                // var pwith = turf.pointsWithinPolygon(pointGrid, turf.polygon(bounds));
             }
 
         }
 
 
     }
-    //feature<linestring>
-    linetopoint(line){}
 }
 
 

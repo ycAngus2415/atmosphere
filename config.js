@@ -21,7 +21,8 @@ requirejs.config({
         "paral": "./paral",
         "test": './test',
         "temputureTestData": './kriging/data',
-        "temputureMain": './kriging/temputureMain'
+        "temputureMain": './kriging/temputureMain',
+        "measureTool": "./measure/measureTool",
     },
     shim: {
         'echarts_gl': {

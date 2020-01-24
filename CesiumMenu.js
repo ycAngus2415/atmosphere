@@ -148,6 +148,12 @@ class Menu{
                     new temputureMain(viewer);
                 })
             }
+            this.measure = function(){
+                $("#drawId").fadeIn();
+                requirejs(['measureTool'],function(){
+                    new measureTool(viewer);
+                })
+            }
         }
         var opts = new op();
         $('#rain').click(opts.ShowRain);
@@ -157,6 +163,7 @@ class Menu{
         $('#flyId').click(opts.ShowFly);
         $("#flow").click(opts.ShowFlow);
         $("#temp").click(opts.ShowTemp);
+        $("#distancemeasure").click(opts.measure);
         // $('#temp').click()
         
         
