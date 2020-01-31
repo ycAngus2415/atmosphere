@@ -3,38 +3,21 @@
 
 <head>
   <link href="lib/CesiumUnminified/Widgets/widgets.css" rel="stylesheet" />
-  <link href="Cesium/Sandcastle/templates/bucket.css" rel="stylesheet" />
+  <link href="./lib/Cesium/Sandcastle/templates/bucket.css" rel="stylesheet" />
   <link href="css/ysc.css" rel="stylesheet" />
   <link href="css/index.css" rel="stylesheet" />
 
-  <script type="text/javascript" src="./Cesium/Cesium.js"></script>
-  <script src="lib/spector.bundle.js"></script>
-
-  <!-- <script type="text/javascript" src='./lib/jquery-2.1.1/jquery.min'></script> -->
-  <script type="text/javascript" src='./lib/echarts/echarts.js'></script>
-  <script type="text/javascript" src='./lib/echarts/echarts-gl.js'></script>
-  <script type="text/javascript" src="lib/dat.gui.min.js"></script>
-  <script type="text/javascript" src="Cesium/Sandcastle/Sandcastle-header.js"></script>
-  <script type="text/javascript" src="./lib/CesiumUnminified/viewerCesiumNavigationMixin.js"></script>
-  <script type="text/javascript" src="./lib/FlowEcharts.js"></script>
-  
-  <script src="lib/netcdfjs.js"></script>
-  <script src="kriging/kriging.min.js"></script>
-  <script src="kriging/bounds.js"></script>
-  <script src ="kriging/turf.min.js"></script>
-  <script src ="measure/CesiumMeasure.min.js"></script>
-  <script src="measure/GeometryMath.js"></script>
+  <script type="text/javascript" src="./lib/Cesium/Cesium.js"></script>
 </head>
-
 <body>
   <canvas id="canvasMap" style="display:none;"></canvas>
   <div id="cesiumContainer" class="fullSize"></div>
   <div id="loadingOverlay"><h1>Loading...</h1></div>
   <div class='echartsBar' id='echart'></div>
   <div id="toolbar">
-    <div id='contourmenu' class="menuOption">
+    <div id='insetImagery' class="menuOption">
       <center><div class='Title'>插入地形图</div>
-      </center><label class="option" id="closeId1" style="position:absolute;right:10px;top:5px;float:right">关闭</label>
+      </center><label class="option" id="closeInsert" style="position:absolute;right:10px;top:5px;float:right">关闭</label>
       <table>
         <tr>
           <td>经度开始：<input type="range" min="-180" max="180" step="1" data-bind="value: startLat, valueUpdate: 'input'">
@@ -148,7 +131,7 @@
             <div class="option"><label>路径自定义</label></div>
           </td>
           <td>
-            <div class="option" id="contour"><label>高程图添加</label></div>
+            <div class="option" id="insert"><label>添加图层</label></div>
           </td>
           <td>
             <div class="option" id="tempState"><label>温度统计</label></div>
@@ -163,20 +146,26 @@
         
     </table>
     </div>
-  <script src="util.js"></script>
-  <script src="dataProcess.js"></script>
-  <script src="customPrimitive.js"></script>
-  <script src="particlesComputing.js"></script>
-  <script src="particlesRendering.js"></script>
-  <script src="particleSystem.js"></script>
-  <script src="wind3D.js"></script>
-  <script src="gui.js"></script>
-  <script src ="CesiumHeatmap.js"></script>
-  <script type="text/javascript" data-main="config" src="lib/requirejs-2.1.9/require.js"></script>
+
+  <script src="lib/spector.bundle.js"></script>
+  <script type="text/javascript" src='./lib/echarts/echarts.js'></script>
+  <script type="text/javascript" src='./lib/echarts/echarts-gl.js'></script>
+  <script type="text/javascript" src="./lib/CesiumUnminified/viewerCesiumNavigationMixin.js"></script>
+  <script type="text/javascript" src="./lib/echartsJS/glmap/FlowEcharts.js"></script>
+  <script src="lib/netcdfjs.js"></script>
+  <script src='lib/dat.gui.min.js'></script>
+  <script src="lib/atomJS/kriging/kriging.min.js"></script>
+  <script src="lib/atomJS/kriging/bounds.js"></script>
+  <script src ="lib/atomJS/kriging/turf.min.js"></script>
+  <script src ="lib/toolJS/measure/CesiumMeasure.min.js"></script>
+  <script src ="./lib/atomJS/CesiumHeatmap.js"></script>
+  <script src='./dist/app~vendor.js'></script>
+  <!-- <script src='./dist/vendors~app~vendor.js'></script> -->
+  <script src='./dist/vendor.js'></script>
+  <script src='./dist/app.js'></script>
+  <!-- <script type="text/javascript" data-main="config" src="lib/requirejs-2.1.9/require.js"></script> -->
   
   <!-- <script type="text/javascript" src="./lib/GLMap.js"></script> -->
-  
-  
   
 </body>
 
