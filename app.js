@@ -10,7 +10,6 @@ window.fileOptions=  {
 //         debug: demo ? false : true
 //     };
 
-var css = new Css();
 var initial = new init();
-
+var css = new Css();
 var menu = new Menu(initial.viewer);

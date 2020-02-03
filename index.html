@@ -9,143 +9,14 @@
 
   <script type="text/javascript" src="./lib/Cesium/Cesium.js"></script>
 </head>
+
 <body>
   <canvas id="canvasMap" style="display:none;"></canvas>
   <div id="cesiumContainer" class="fullSize"></div>
-  <div id="loadingOverlay"><h1>Loading...</h1></div>
-  <div class='echartsBar' id='echart'></div>
-  <div id="toolbar">
-    <div id='insetImagery' class="menuOption">
-      <center><div class='Title'>插入地形图</div>
-      </center><label class="option" id="closeInsert" style="position:absolute;right:10px;top:5px;float:right">关闭</label>
-      <table>
-        <tr>
-          <td>经度开始：<input type="range" min="-180" max="180" step="1" data-bind="value: startLat, valueUpdate: 'input'">
-          <input type="text" size="2" data-bind="value: startLat"></td>
-          <td>
-          经度结束：<input type="range" min="-180" max="180" step="1" data-bind="value: endLat, valueUpdate: 'input'">
-          <input type="text" size="2" data-bind="value: endLat">
-          </td>
-        </tr>
-        <tr>
-          <td>
-            纬度开始：<input type="range" min="-90" max="90" step="1" data-bind="value: startLon, valueUpdate: 'input'">
-            <input type="text" size="2" data-bind="value: startLon">
-          </td>
-          <td>
-            纬度结束：<input type="range" min="-90" max="90" step="1" data-bind="value: endLon, valueUpdate: 'input'">
-            <input type="text" size="2" data-bind="value: endLon">
-          </td> 
-        </tr>
-      </table>
-      <label name="fileToUpload" id="file" data-bind="click: change" class='option'>打开文件</label>
-      <input type="file" name="fileToUpload" id="fileToUpload" hidden>
-    </div>
-    <div id='flyOptionId' class="menuOption">
-      <center class='Title'>飞行控制</center>
-      <label class="option" id="closeId2" style="position:absolute;right:10px;top:5px;float:right">关闭</label>
-      <table>
-        <tr>
-          <td><label id="startfly" class="option">开始</label></td>
-          <td><label id="pouse" class="option">暂停</label></td>
-          <td><label id="foward" class="option">前进</label></td>
-          <td><label id="back" class="option">后退</label></td>
-          <td><label id="tracked" class="option">跟踪</label></td>
-          <td><label id="custom" class="option">自定义</label></td>
-        </tr>
-      </table>
-    </div>
-    <div id='flowId' class="menuOption">
-      <center><div class='Title'>人口流动图</div>
-      <label class="option" id="closeFlow">关闭</label>
-    </div>
-    <div id='tempId' class="menuOption">
-      <center><div class='Title'>插值温度图</div>
-      <label class="option" id="closeTemp">关闭</label>
-    </div>
-    <div id='windId' class="menuOption" style="right:260px;">
-      <center><div class='Title'>风场图</div>
-      <label class="option" id="closewind">关闭</label>
-    </div>
-    <div id='rainId' class="menuOption">
-      <center><div class='Title'>降雨</div>
-      <label class="option" id="closerain">关闭</label>
-    </div>
-    <div id='snowId' class="menuOption">
-      <center><div class='Title'>降雪</div>
-      <label class="option" id="closesnow">关闭</label>
-    </div>
-    <div id='heatId' class="menuOption">
-      <center><div class='Title'>热力图</div>
-      <label class="option" id="closeheat">关闭</label>
-    </div>
-    <div id='drawId' class="menuOption">
-      <center><div class='Title'>测量线面</div>
-      <table>
-        <tr>
-          <td>
-            <button id="point">画点</button>
-          </td>
-          <td>
-            <button id="line">画线</button>
-          </td>
-          <td>
-            <button id="polygon">画面</button>
-          </td>
-          <td>
-            <button id="elevation">量高</button>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <button id="remove">关闭</button>
-          </td>
-        </tr>
-      </table>
-    </div>
+  <div id="loadingOverlay">
+    <h1>Loading...</h1>
   </div>
-  <div class="topmenu">
-    <table class="menu">
-        <tr>
-          <th scope="col" class="tit">气象要素</th>
-          <th scope="col" class="tit">测量工具</th>
-          <th scope="col" class="tit">航线规划</th>
-          <th scope="col" class="tit">测试内容</th>
-          <th scope="col" class="tit">数据统计</th>
-          <th scope="col" class="tit">关于</th>
-        </tr>
-        <tr valign="top">
-          <td>
-            <div class="option" id="rain"><label>雨显示</label></div>
-            <div class="option" id="snow"><label>雪显示</label></div>
-            <div class="option" id="heat"><label>热力图显示</label></div>
-            <div class="option" id="wind"><label>风显示</label></div>
-            <div class="option" id="temp"><label>温度大面显示</label></div>
-          </td>
-          <td>
-            <div class="option" id="distancemeasure"><label>距离测量</label></div>
-            <div class="option" id="areameasure"><label>面积测量</label></div>
-          </td>
-          <td>
-            <div class="option"><label id="flyId">路径航线</label></div>
-            <div class="option"><label>路径自定义</label></div>
-          </td>
-          <td>
-            <div class="option" id="insert"><label>添加图层</label></div>
-          </td>
-          <td>
-            <div class="option" id="tempState"><label>温度统计</label></div>
-            <div class="option" id="salState"><label>盐度统计</label></div>
-            <div class="option" id="testheat"><label>温度图</label></div>
-            <div class="option" id="flow"><label>人口流动图</label></div>
-          </td>
-          <td>
-            <div class="option"><label>关于我们</label></div>
-          </td>
-        </tr>
-        
-    </table>
-    </div>
+  <!-- <!-- <div class='echartsBar' id='echart'></div> --> -->
 
   <script src="lib/spector.bundle.js"></script>
   <script type="text/javascript" src='./lib/echarts/echarts.js'></script>
@@ -156,17 +27,17 @@
   <script src='lib/dat.gui.min.js'></script>
   <script src="lib/atomJS/kriging/kriging.min.js"></script>
   <script src="lib/atomJS/kriging/bounds.js"></script>
-  <script src ="lib/atomJS/kriging/turf.min.js"></script>
-  <script src ="lib/toolJS/measure/CesiumMeasure.min.js"></script>
-  <script src ="./lib/atomJS/CesiumHeatmap.js"></script>
+  <script src="lib/atomJS/kriging/turf.min.js"></script>
+  <script src="lib/toolJS/measure/CesiumMeasure.min.js"></script>
+  <script src="./lib/atomJS/CesiumHeatmap.js"></script>
   <script src='./dist/app~vendor.js'></script>
-  <!-- <script src='./dist/vendors~app~vendor.js'></script> -->
+  <script src='./dist/vendors~app~vendor.js'></script>
   <script src='./dist/vendor.js'></script>
   <script src='./dist/app.js'></script>
   <!-- <script type="text/javascript" data-main="config" src="lib/requirejs-2.1.9/require.js"></script> -->
-  
+
   <!-- <script type="text/javascript" src="./lib/GLMap.js"></script> -->
-  
+
 </body>
 
 </html>
