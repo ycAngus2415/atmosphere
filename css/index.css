@@ -149,6 +149,7 @@ body {
 	height: 30px;
 	line-height: 30px;
 	color: #dddddd;
+	background-color: rgba(0, 0, 0, 0.493);
 }
 
 .topmenu a:hover {
@@ -226,6 +227,7 @@ a.ys-cesium:hover {
 
 .Title {
 	font: 20px bold;
+	width: 100px;
 	/*font-size:20px;*/
 }
 
@@ -296,4 +298,108 @@ button:hover {
 	height: 100%;
 	background-color: rgba(251, 251, 251, 0.137);
 	/* display: none; */
+}
+
+/*draw tool*/
+
+.infoWindow {
+    position: absolute;
+    min-width: 100px;
+    max-width: 300px;
+}
+.infoWindow #frame {
+    padding: 10px;
+    border: 1px solid black;
+    background: white;
+}
+.infoWindow #close {
+    float: right;
+    margin: 5px 2px;
+    font-size: small;
+    color: gray;
+    cursor: pointer;
+}
+.infoWindow #arrow {
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    margin-left: -10px;
+    border-right: 10px solid transparent;
+    border-left: 10px solid transparent;
+    border-top: 10px solid white;
+}
+.toolbar1 {
+    margin: 0px;
+    padding: 0px;
+	background: rgba(255, 255, 255, 0.37);
+	padding: 1px solid #eee;
+
+}
+
+.toolbar1 > .button {
+    margin: 5px;
+	padding: 5px;
+	background-color: rgba(253, 253, 253, 0.794);
+    border: 1px solid #eee;
+    cursor: pointer;
+}
+
+.toolbar1 > .button:hover {
+    background: #eee;
+}
+
+.twipsy {
+    display: block;
+    position: absolute;
+    visibility: visible;
+    max-width: 200px;
+    min-width: 100px;
+    padding: 5px;
+    font-size: 11px;
+    z-index: 1000;
+    opacity: 0.8;
+    -khtml-opacity: 0.8;
+    -moz-opacity: 0.8;
+    filter: alpha(opacity=80);
+}
+.twipsy.left .twipsy-arrow {
+    top: 50%;
+    right: 0;
+    margin-top: -5px;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 5px solid #000000;
+}
+.twipsy.right .twipsy-arrow {
+    top: 50%;
+    left: 0;
+    margin-top: -5px;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-right: 5px solid #000000;
+}
+.twipsy-inner {
+    padding: 3px 8px;
+    background-color: #000000;
+    color: white;
+    text-align: center;
+    max-width: 200px;
+    text-decoration: none;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+.twipsy-arrow {
+    position: absolute;
+    width: 0;
+    height: 0;
+}
+#logging{
+	position: absolute;
+	bottom: 30px;
+	height: 30px;
+	right: 0px;
+	background-color: rgba(0, 0, 0, 0.185);
+	text-align: right;
+	line-height: 29px;
 }
