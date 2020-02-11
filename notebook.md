@@ -42,3 +42,5 @@
 * 几何体完全可以用primitive添加，entity虽然也可以，但是性能没有primitive高。
 * geometry类是一个描述类，geometryinstances是geometry的实体类，primitive 可以直接添加geometryinstances类
 * primitive添加的geometryinstances 可以通过设置appearance来渲染材质和纹理
+* entity 可以使用property属性，利用callbackproperty刷新实体的属性，但是primitive我还不知道怎么弄。找了好久，发现了一个update函数，但是不知道怎么用。
+* cesium.knockout可以进行绑定，将ui和cesium做成响应式交互。vue应该更好
