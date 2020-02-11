@@ -7,6 +7,9 @@ import {
 import {
 	Css
 } from './lib/initJS/css.js';
+import {
+	adjust
+} from './lib/initJS/adjust.js'
 $(document).ready(function() {
 	window.fileOptions = {
 		dataDirectory: false ? 'https://raw.githubusercontent.com/RaymanNg/3D-Wind-Field/master/data/' : 'data/',
@@ -20,4 +23,5 @@ $(document).ready(function() {
 	var initial = new init();
 	var css = new Css();
 	var menu = new Menu(initial.viewer);
+	new adjust(initial.viewer);
 });

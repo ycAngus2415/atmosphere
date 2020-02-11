@@ -37,3 +37,8 @@
 * echarts确实还是简单，把数据放进去就可以了的样子。
 * 但是要将其放到地球中，还需要对坐标轴编码，可能得自己写,叫基于cesium的数据统计三维可视化吧。
 * CSS 有动画，但是有很多框架已经做了，这一块需要一个人专门来做。比较难。
+
+# 2020.2.10
+* 几何体完全可以用primitive添加，entity虽然也可以，但是性能没有primitive高。
+* geometry类是一个描述类，geometryinstances是geometry的实体类，primitive 可以直接添加geometryinstances类
+* primitive添加的geometryinstances 可以通过设置appearance来渲染材质和纹理
