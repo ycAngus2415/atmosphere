@@ -44,3 +44,11 @@
 * primitive添加的geometryinstances 可以通过设置appearance来渲染材质和纹理
 * entity 可以使用property属性，利用callbackproperty刷新实体的属性，但是primitive我还不知道怎么弄。找了好久，发现了一个update函数，但是不知道怎么用。
 * cesium.knockout可以进行绑定，将ui和cesium做成响应式交互。vue应该更好
+
+# 2020.2.17
+* geometry 可以通过设置点的局部坐标得到任何几何体，通过设置点的索引，将其渲染为三角网，
+* 局部坐标的实体，通过modelmatrix转换成世界坐标，并放在世界坐标系中。
+* 局部坐标系中的几何体可以设置color属性，这样，每个点都可以有不同的颜色属性，比起实体中的颜色，更具有自定义特性。
+* 本来计划使用贴图的方式，先在cavas中生成渐变色的几何体，然后贴图到几何体中，但是，这又涉及到坐标转化，而且试验后效果并不好。
+* towireframe函数可以将实体转换成三角网。
+* primitive的属性geometry直接更新是做不到的，不知道怎样才能做到geometry属性的更新。目前只能重新渲染一个新的primitive来实现更新。

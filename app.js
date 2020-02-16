@@ -11,6 +11,7 @@ import {
 	adjust
 } from './lib/initJS/adjust.js'
 $(document).ready(function() {
+	//wind file options
 	window.fileOptions = {
 		dataDirectory: false ? 'https://raw.githubusercontent.com/RaymanNg/3D-Wind-Field/master/data/' : 'data/',
 		dataFile: "demo.nc",

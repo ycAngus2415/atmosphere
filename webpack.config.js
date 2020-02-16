@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
   // JavaScript 执行入口文件
@@ -27,6 +28,7 @@ module.exports = {
             Util: path.resolve(__dirname,'./lib/windJS/util.js'),
             DataProcess: path.resolve(__dirname,'./lib/windJS/dataProcess.js'),
         }),
+    new BundleAnalyzerPlugin(),
   	],
   mode: 'development',
   devServer:{
